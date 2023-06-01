@@ -20,16 +20,23 @@ signed main()
 
     int max_ans = tmax, min_ans = tmin;
 
-    while (max_ans - min_ans >= tmax - tmin)
+    while (1)
     {
-        max_ans = tmax;
-        min_ans = tmin;
+        if (max_ans - min_ans > tmax - tmin)
+        {
+            max_ans = tmax;
+            min_ans = tmin;
+        }
+
         vector<int> top = *pq.begin();
+
         pq.erase(pq.begin());
+
         if (top[2] + 1 < n)
             pq.insert({arr[top[1]][top[2] + 1], top[1], top[2] + 1});
         else
             break;
+
         tmax = (*pq.rbegin())[0];
         tmin = (*pq.begin())[0];
     }
